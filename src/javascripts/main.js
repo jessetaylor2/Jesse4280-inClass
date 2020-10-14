@@ -16,10 +16,17 @@ import fs_script from "../shaders/fragment-color.glsl";
 import { WebGLHelper } from './webgl_helper';
 import { scribble, sierpinski, displayMultiProgram } from './week05'
 import { displayCube, displayCubeIndexed, displayPyramid } from './week06'
+import { displayMultipleCubes, displaySphere, displayNewCube} from './week07'
+
+//displayCube();
+
+//displaySphere();
+
+//displayMultipleCubes();
 
 //displayPyramid();
 
-displayCubeIndexed();
+//displayCubeIndexed();
 
 //sierpinski();
 

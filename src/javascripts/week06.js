@@ -444,7 +444,7 @@ export function displayCube() {
     let controls = {
 
         axis: 2,
-        theta: 30,
+        theta: 30
 
     }
 
@@ -454,20 +454,17 @@ export function displayCube() {
 
         theta[controls.axis] += 1
 
-        let s = new THREE.Matrix4().makeScale(.5, .5, .5)
-        let t = new THREE.Matrix4().makeTranslation(-.2, .3, .1)
         let rx = new THREE.Matrix4().makeRotationX(theta[0] * Math.PI / 180)
         let ry = new THREE.Matrix4().makeRotationY(theta[1] * Math.PI / 180)
         let rz = new THREE.Matrix4().makeRotationZ(theta[2] * Math.PI / 180)
 
         let ryz = new THREE.Matrix4().multiplyMatrices(ry, rz)
         let rxyz = new THREE.Matrix4().multiplyMatrices(rx, ryz)
-        let rs = new THREE.Matrix4().multiplyMatrices(rxyz, s)
-        let trs = new THREE.Matrix4().multiplyMatrices(rxyz, t)
+
 
         WebGLHelper.clear(gl, [1, 1, 1, 1])
 
-        gl.uniformMatrix4fv(transformByLoc, false, trs.elements)
+        gl.uniformMatrix4fv(transformByLoc, false, rxyz.elements)
 
         WebGLHelper.clear(gl, [1.0, 1.0, 1.0, 1.0])
 
