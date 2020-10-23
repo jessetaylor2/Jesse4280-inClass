@@ -17,6 +17,16 @@ import { WebGLHelper } from './webgl_helper';
 import { scribble, sierpinski, displayMultiProgram } from './week05'
 import { displayCube, displayCubeIndexed, displayPyramid } from './week06'
 import { displayMultipleCubes, displaySphere, displayNewCube} from './week07'
+import { displayThreeHelloWorld, displayAnimatedCube, displayCubeScene } from './week08'
+import { displayMeshes } from './week09'
+
+displayCubeScene();
+
+//displayMeshes();
+
+//displayAnimatedCube();
+
+//displayThreeHelloWorld();
 
 //displayCube();
 
