@@ -19,8 +19,13 @@ import { displayCube, displayCubeIndexed, displayPyramid } from './week06'
 import { displayMultipleCubes, displaySphere, displayNewCube} from './week07'
 import { displayThreeHelloWorld, displayAnimatedCube, displayCubeScene } from './week08'
 import { displayMeshes } from './week09'
+import { displayTexturedScene, displayCity } from './week10'
 
-displayCubeScene();
+displayCity();
+
+//displayTexturedScene();
+
+//displayCubeScene();
 
 //displayMeshes();
 
