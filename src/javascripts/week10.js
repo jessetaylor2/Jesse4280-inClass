@@ -1,248 +1,248 @@
-import * as THREE from 'three'
-import * as dat from 'dat.gui'
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
-import { MTLLoader, OBJLoader } from 'three-obj-mtl-loader'
-import { checkerboard, sinusoidal, somePattern } from './textures'
+// import * as THREE from 'three'
+// import * as dat from 'dat.gui'
+// import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+// import { MTLLoader, OBJLoader } from 'three-obj-mtl-loader'
+// import { checkerboard, sinusoidal, somePattern } from './textures'
 
 
-export function displayCity() {
+// export function displayCity() {
 
-    let canvas = document.querySelector('#webgl-scene')
-    let scene = new THREE.Scene()
-    let renderer = new THREE.WebGLRenderer({canvas})
-    let camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientWidth, .1, 1000)
+//     let canvas = document.querySelector('#webgl-scene')
+//     let scene = new THREE.Scene()
+//     let renderer = new THREE.WebGLRenderer({canvas})
+//     let camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientWidth, .1, 1000)
   
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight)
-    renderer.setClearColor(0xEEEEEE)
+//     renderer.setSize(canvas.clientWidth, canvas.clientHeight)
+//     renderer.setClearColor(0xEEEEEE)
   
-    let axes = new THREE.AxesHelper(10)
-    scene.add(axes)
+//     let axes = new THREE.AxesHelper(10)
+//     scene.add(axes)
 
-    //Loading models
+//     //Loading models
 
-    let mtlLoader = new MTLLoader()
-    let objLoader = new OBJLoader()
+//     let mtlLoader = new MTLLoader()
+//     let objLoader = new OBJLoader()
 
-    mtlLoader.load("./models/city.mtl", function(material) {
+//     mtlLoader.load("./models/city.mtl", function(material) {
 
-        material.preload()
-        objLoader.setMaterials(material)
-        objLoader.load("./models/city.obj", function(city) {
+//         material.preload()
+//         objLoader.setMaterials(material)
+//         objLoader.load("./models/city.obj", function(city) {
 
-            for(let o of city.children) {
+//             for(let o of city.children) {
 
-                o.material = new THREE.MeshNormalMaterial()
+//                 o.material = new THREE.MeshNormalMaterial()
 
-            }
+//             }
             
-            scene.add(city)
-            renderer.render(scene, camera)
+//             scene.add(city)
+//             renderer.render(scene, camera)
 
-        })
+//         })
 
-    })
+//     })
 
     
 
-    let cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.addEventListener("change", function(){
+//     let cameraControls = new OrbitControls(camera, renderer.domElement)
+//     cameraControls.addEventListener("change", function(){
 
-      renderer.render(scene, camera)
+//       renderer.render(scene, camera)
 
-    })
+//     })
 
-    //Adding light sources
-    let ambientLight = new THREE.AmbientLight(0x333333)
-    let directionalLight = new THREE.DirectionalLight(0x777777)
-    let pointLight = new THREE.PointLight(0x999999) 
+//     //Adding light sources
+//     let ambientLight = new THREE.AmbientLight(0x333333)
+//     let directionalLight = new THREE.DirectionalLight(0x777777)
+//     let pointLight = new THREE.PointLight(0x999999) 
 
-    scene.add(ambientLight)
-    scene.add(directionalLight)
-    scene.add(pointLight)
+//     scene.add(ambientLight)
+//     scene.add(directionalLight)
+//     scene.add(pointLight)
 
-    let controls = {
+//     let controls = {
       
 
 
-    }
+//     }
 
-    camera.position.set(-200, 400, -200)
+//     camera.position.set(-200, 400, -200)
   
-    function animate() {
+//     function animate() {
   
-        camera.lookAt(scene.position)
-        renderer.render(scene, camera)
-        cameraControls.update()
+//         camera.lookAt(scene.position)
+//         renderer.render(scene, camera)
+//         cameraControls.update()
 
-    }
+//     }
   
-    animate()
+//     animate()
   
-    let gui = new dat.GUI()
-    document.querySelector('aside').appendChild(gui.domElement)
+//     let gui = new dat.GUI()
+//     document.querySelector('aside').appendChild(gui.domElement)
 
-}
+// }
 
-export function displayTexturedScene(){
-    let canvas = document.querySelector('#webgl-scene')
-    let scene = new THREE.Scene()
-    let renderer = new THREE.WebGLRenderer({canvas})
-    let camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientWidth, .1, 1000)
+// export function displayTexturedScene(){
+//     let canvas = document.querySelector('#webgl-scene')
+//     let scene = new THREE.Scene()
+//     let renderer = new THREE.WebGLRenderer({canvas})
+//     let camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientWidth, .1, 1000)
   
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight)
-    renderer.setClearColor(0xEEEEEE)
+//     renderer.setSize(canvas.clientWidth, canvas.clientHeight)
+//     renderer.setClearColor(0xEEEEEE)
   
-    let axes = new THREE.AxesHelper(10)
-    scene.add(axes)
+//     let axes = new THREE.AxesHelper(10)
+//     scene.add(axes)
 
-    //Loading textures
-    let texLoader = new THREE.TextureLoader()
-    let textures = {
+//     //Loading textures
+//     let texLoader = new THREE.TextureLoader()
+//     let textures = {
 
-        crate: texLoader.load('./images/crate0.png', function() {
+//         crate: texLoader.load('./images/crate0.png', function() {
 
-            renderer.render(scene, camera)
+//             renderer.render(scene, camera)
 
-        }),
+//         }),
 
-        crate_bump: texLoader.load('./images/crate0_bump.png', function() {
+//         crate_bump: texLoader.load('./images/crate0_bump.png', function() {
 
-            renderer.render(scene, camera)
+//             renderer.render(scene, camera)
 
-        }),
+//         }),
 
-        crate_normal: texLoader.load('./images/crate0_normal.png', function() {
+//         crate_normal: texLoader.load('./images/crate0_normal.png', function() {
 
-            renderer.render(scene, camera)
+//             renderer.render(scene, camera)
 
-        }),
+//         }),
 
-        earth: texLoader.load('./images/earth.jpg', function() {
+//         earth: texLoader.load('./images/earth.jpg', function() {
 
-            renderer.render(scene, camera)
+//             renderer.render(scene, camera)
 
-        }),
+//         }),
 
-        wall: texLoader.load('./images/stone.jpg', function(texture) {
+//         wall: texLoader.load('./images/stone.jpg', function(texture) {
 
-            texture.wrapS = THREE.RepeatWrapping
-            texture.wrapT = THREE.RepeatWrapping
-            texture.repeat.set(4, 1)
-            renderer.render(scene, camera)
+//             texture.wrapS = THREE.RepeatWrapping
+//             texture.wrapT = THREE.RepeatWrapping
+//             texture.repeat.set(4, 1)
+//             renderer.render(scene, camera)
 
-        }),
+//         }),
 
-        floor: texLoader.load('./images/floor.jpg', function() {
+//         floor: texLoader.load('./images/floor.jpg', function() {
 
-            renderer.render(scene, camera)
+//             renderer.render(scene, camera)
 
-        }),
+//         }),
 
-        waldo: texLoader.load('./images/waldo.png', function() {
+//         waldo: texLoader.load('./images/waldo.png', function() {
 
-            renderer.render(scene, camera)
+//             renderer.render(scene, camera)
 
-        }), 
+//         }), 
 
-        sinusoidal: sinusoidal(256),
+//         sinusoidal: sinusoidal(256),
 
-        checkerboard: checkerboard(256, 256),
+//         checkerboard: checkerboard(256, 256),
 
-        somePattern: somePattern(4, 4)
+//         somePattern: somePattern(4, 4)
 
-    }
+//     }
 
-    let cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.addEventListener("change", function(){
+//     let cameraControls = new OrbitControls(camera, renderer.domElement)
+//     cameraControls.addEventListener("change", function(){
 
-      renderer.render(scene, camera)
+//       renderer.render(scene, camera)
 
-    })
+//     })
 
-    //Adding the crate
-    let geometry = new THREE.BoxGeometry(100, 100, 100)
-    let cube = new THREE.Mesh(geometry)
-    cube.materialParams = {}
-    cube.position.set(-200, 50, -100) 
-    cube.name = 'crate'
-    scene.add(cube)
-    cube.material = new THREE.MeshStandardMaterial(cube.materialParams)
-    cube.material.map = textures[cube.name]
-    cube.material.bumpMap = textures['crate_bump']
-    cube.material.bumpScale = .6
-    cube.material.normalMap = textures['crate_normal']
+//     //Adding the crate
+//     let geometry = new THREE.BoxGeometry(100, 100, 100)
+//     let cube = new THREE.Mesh(geometry)
+//     cube.materialParams = {}
+//     cube.position.set(-200, 50, -100) 
+//     cube.name = 'crate'
+//     scene.add(cube)
+//     cube.material = new THREE.MeshStandardMaterial(cube.materialParams)
+//     cube.material.map = textures[cube.name]
+//     cube.material.bumpMap = textures['crate_bump']
+//     cube.material.bumpScale = .6
+//     cube.material.normalMap = textures['crate_normal']
 
-    //Adding waldo cube
-    cube = new THREE.Mesh(geometry)
-    cube.materialParams = {}
-    cube.position.set(200, 50, 100) 
-    cube.name = 'somePattern'
-    scene.add(cube)
-    cube.material = new THREE.MeshStandardMaterial(cube.materialParams)
-    cube.material.map = textures[cube.name]
+//     //Adding waldo cube
+//     cube = new THREE.Mesh(geometry)
+//     cube.materialParams = {}
+//     cube.position.set(200, 50, 100) 
+//     cube.name = 'somePattern'
+//     scene.add(cube)
+//     cube.material = new THREE.MeshStandardMaterial(cube.materialParams)
+//     cube.material.map = textures[cube.name]
 
-    //Adding the floor
-    geometry = new THREE.PlaneGeometry(500, 300)
-    let plane = new THREE.Mesh(geometry)
-    plane.materialParams = { side: THREE.DoubleSide }
-    plane.rotateX(Math.PI / 2)
-    plane.name = 'floor'
-    scene.add(plane)
-    plane.material = new THREE.MeshStandardMaterial(plane.materialParams)
-    plane.material.map = textures[plane.name]
+//     //Adding the floor
+//     geometry = new THREE.PlaneGeometry(500, 300)
+//     let plane = new THREE.Mesh(geometry)
+//     plane.materialParams = { side: THREE.DoubleSide }
+//     plane.rotateX(Math.PI / 2)
+//     plane.name = 'floor'
+//     scene.add(plane)
+//     plane.material = new THREE.MeshStandardMaterial(plane.materialParams)
+//     plane.material.map = textures[plane.name]
 
-    //Adding wall
-    geometry = new THREE.BoxGeometry(500, 100, 5)
-    let wall = new THREE.Mesh(geometry)
-    wall.materialParams = {}
-    wall.name = 'wall'
-    wall.position.set(0, 50, 150)
-    scene.add(wall)
-    wall.material = new THREE.MeshStandardMaterial(wall.materialParams)
-    wall.material.map = textures[wall.name]
+//     //Adding wall
+//     geometry = new THREE.BoxGeometry(500, 100, 5)
+//     let wall = new THREE.Mesh(geometry)
+//     wall.materialParams = {}
+//     wall.name = 'wall'
+//     wall.position.set(0, 50, 150)
+//     scene.add(wall)
+//     wall.material = new THREE.MeshStandardMaterial(wall.materialParams)
+//     wall.material.map = textures[wall.name]
 
-    //Adding Google Earth
-    geometry = new THREE.SphereGeometry(50, 40, 40)
-    let sphere = new THREE.Mesh(geometry)
-    sphere.materialParams = {}
-    sphere.name = 'earth'
-    sphere.position.set(200, 50, -50)
-    scene.add(sphere)
-    sphere.material = new THREE.MeshStandardMaterial(sphere.materialParams)
-    sphere.material.map = textures[sphere.name]
+//     //Adding Google Earth
+//     geometry = new THREE.SphereGeometry(50, 40, 40)
+//     let sphere = new THREE.Mesh(geometry)
+//     sphere.materialParams = {}
+//     sphere.name = 'earth'
+//     sphere.position.set(200, 50, -50)
+//     scene.add(sphere)
+//     sphere.material = new THREE.MeshStandardMaterial(sphere.materialParams)
+//     sphere.material.map = textures[sphere.name]
 
-    //Adding light sources
-    let ambientLight = new THREE.AmbientLight(0x333333)
-    let directionalLight = new THREE.DirectionalLight(0x777777)
-    let pointLight = new THREE.PointLight(0x999999) 
+//     //Adding light sources
+//     let ambientLight = new THREE.AmbientLight(0x333333)
+//     let directionalLight = new THREE.DirectionalLight(0x777777)
+//     let pointLight = new THREE.PointLight(0x999999) 
 
-    scene.add(ambientLight)
-    scene.add(directionalLight)
-    scene.add(pointLight)
+//     scene.add(ambientLight)
+//     scene.add(directionalLight)
+//     scene.add(pointLight)
 
-    let controls = {
+//     let controls = {
       
 
 
-    }
+//     }
 
-    camera.position.set(-200, 400, -200)
+//     camera.position.set(-200, 400, -200)
   
-    function animate() {
+//     function animate() {
   
-        sphere.rotateY(.02)
-        camera.lookAt(scene.position)
-        renderer.render(scene, camera)
-        cameraControls.update()
-        requestAnimationFrame(animate)
+//         sphere.rotateY(.02)
+//         camera.lookAt(scene.position)
+//         renderer.render(scene, camera)
+//         cameraControls.update()
+//         requestAnimationFrame(animate)
 
-    }
+//     }
   
-    animate()
+//     animate()
   
-    let gui = new dat.GUI()
-    document.querySelector('aside').appendChild(gui.domElement)
-    // gui.add(controls, 'radius').min(2).max(900).onChange(animate)
-    // gui.add(controls, 'theta').min(-1 * Math.PI).max(Math.PI).onChange(animate)
-    // gui.add(controls, 'phi').min(-1 * Math.PI).max(Math.PI).onChange(animate)
-  }
+//     let gui = new dat.GUI()
+//     document.querySelector('aside').appendChild(gui.domElement)
+//     // gui.add(controls, 'radius').min(2).max(900).onChange(animate)
+//     // gui.add(controls, 'theta').min(-1 * Math.PI).max(Math.PI).onChange(animate)
+//     // gui.add(controls, 'phi').min(-1 * Math.PI).max(Math.PI).onChange(animate)
+//   }

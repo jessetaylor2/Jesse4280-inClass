@@ -184,6 +184,35 @@ export function displayCubeScene() {
 
     // let sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
 
+    let texLoader = new THREE.TextureLoader()
+    let textures = {
+
+        crate: texLoader.load('./images/crate0.png', function() {
+
+            renderer.render(scene, camera)
+
+        }),
+
+        wall: texLoader.load('./images/stone.jpg', function(texture) {
+
+          renderer.render(scene, camera)
+
+        }),
+
+        floor: texLoader.load('./images/floor.jpg', function() {
+
+          renderer.render(scene, camera)
+
+        }),
+
+        waldo: texLoader.load('./images/waldo.png', function() {
+
+          renderer.render(scene, camera)
+
+        })
+
+    }
+
     let num = 10;
 
     //creating 1000 cubes
@@ -204,7 +233,28 @@ export function displayCubeScene() {
                 box.position.y = j * 25
                 box.position.z = k * 25
                 box.material = new THREE.MeshLambertMaterial()
-                box.material.color.setRGB(Math.random(), Math.random(), Math.random())
+                let num = Math.random()
+                if(num < .2) {
+
+                  box.name = 'crate'
+
+                }
+                else if(num > .2 && num < .4) {
+
+                  box.name = 'wall'
+
+                }
+                else if(num > .4 && num < .7) {
+
+                  box.name = 'floor'
+
+                }
+                else {
+
+                  box.name = 'waldo'
+
+                }
+                box.material.map = textures[box.name]
                 //box.material.needsUpdate = true
 
                 if(Math.random() > .2) {

@@ -21,11 +21,11 @@ import { displayThreeHelloWorld, displayAnimatedCube, displayCubeScene } from '.
 import { displayMeshes } from './week09'
 import { displayTexturedScene, displayCity } from './week10'
 
-displayCity();
+//displayCity();
 
 //displayTexturedScene();
 
-//displayCubeScene();
+displayCubeScene();
 
 //displayMeshes();
 
